@@ -150,45 +150,8 @@
           
         </div>
 
-        <button type="button" class="btn btn-sparta btn-block" onClick="write()" id="btnOrder"> 글 등록 </button>
-        <div
-          class="modal text-left"
-          id="orderModal"
-          tabindex="-1"
-          role="dialog"
-          aria-labelledby="orderModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="orderModalLabel">결제완료</h5>
-                <button
-                  type="button"
-                  class="close"
-                  data-dismiss="modal"
-                  aria-label="Close"
-                >
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <span id="nickname"></span>님, 주문해주셔서 감사합니다 :)
-              </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-outline-sparta btn-confirm"
-                  data-dismiss="modal"
-                >
-                  확인
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+        <button type="button" class="btn btn-sparta btn-block" onclick="textWrite()"  id="btnWrite"> 글 등록 </button>
+        
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -244,39 +207,45 @@
     </script>
 
 <script>
-  function write() {
-    alert("고장났나?")
-    console.log("고장인가?")
-    let title = $("#inputTitle").val();
-    let nickname = $("#inputNickname").val();
-    let content = $("#inputContent").val();
-    
-    $.ajax({
-      type: "POST",
-      url: "/api/write",
-      data: {
-        title: title,
-        nickname: nickname,
-        content: content,
-      },
-      success: function (response) {
-        customAlert("게시글이 작성되었습니다!", function () {
-          window.location.replace("/texts");
-        });
-      },
-      error: function (error) {
-        customAlert(error.responseJSON.errorMessage);
-        alert("asdfawdf");
-      },
-    });
+function textWrite() {
+  alert("고장났나?")
+  console.log("고장인가?")
+  let title = $("#inputTitle").val();
+  let nickname = $("#inputNickname").val();
+  let content = $("#inputContent").val();
+  
+  $.ajax({
+    type: "POST",
+    url: "/api/write",
+    data: {
+      title: title,
+      nickname: nickname,
+      content: content,
+    },
+    success: function (response) {
+      customAlert("게시글이 작성되었습니다!", function () {
+        window.location.replace("/texts");
+        alert("또 고장났나?")
+        console.log("기매준 풍성풍성")
+      });
+    },
+    error: function (error) {
+      customAlert(error.responseJSON.errorMessage);
+      alert("asdfawdf");
+    },
+  });
+}
+function customAlert(text, confirmCallback) {
+  $("#alertText").text(text);
+  $("#alertModal").modal("show");
+  if (confirmCallback) {
+    $("#alertModal .btn-confirm").click(confirmCallback);
   }
-  function customAlert(text, confirmCallback) {
-    $("#alertText").text(text);
-    $("#alertModal").modal("show");
-    if (confirmCallback) {
-      $("#alertModal .btn-confirm").click(confirmCallback);
-    }
-  }
+}
+
+
+
+
 </script>
   </body>
 </html>

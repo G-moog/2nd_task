@@ -124,17 +124,17 @@
 
     <h1 align = "center">게시글 목록</h1>
     <hr> 
-    <table border = "1" style = "width : 100%"  id="textList">
+    <table border = "1" style = "width : 100%" >
       <thead>
-        
         <tr>
           <th style="width: 60%">제목</th>
           <th style="width: 10%">글쓴이</th>
         </tr>
       </thead>
-         <tbody align = "center">
-        </tbody>
-    </table>
+         <tbody align = "center" id="textsList">
+         </tbody>
+        </table>   
+    
 
     
     <button type="button" class="btn btn-outline-dark" onclick="window.location.href='/write.html'">글 작성</button>
@@ -194,18 +194,17 @@
     <script>
        function make_table(item) {
         let htmlTemp = 
-        `
-          <tr>
-          <td align = "left"><a "location.href='/detail.html?itemId=${
-            item["itemId"]}'">${item["title"]}</a></td>
-            <td>${item["nickname"]}</td>
-          </tr>
+        `<tr>
+          <td align = "left"><a "location.href='/detail.html?itemId=${item["itemId"]}'">  ${item["title"]}  </a></td>
+          <td>  ${item["nickname"]}  </td>
+        </tr>`
         
-              
-      `
-      $("#textsList>tbody").append("<tr><td>Test Row Append</td></tr>");
+        $("#textsList").append(htmlTemp);       
+      
+      // $("#textsList").append("<tr><td>Test Row Append</td></tr>");
+      // $("#textsList>tbody").append("<tr><td>Test Row Append</td></tr>");
       // $("<tr><td>Test Row Append</td></tr>").appendto("#textsList>tbody");
-        // $("#textsList").append(htmlTemp);
+        
       }
     </script>
   </body>

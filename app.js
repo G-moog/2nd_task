@@ -79,16 +79,35 @@ router.get("/texts", authMiddleware, async (req, res) => {
   });
 
 // 게시글 하나만 불러오기
-  router.get("/texts/:textsId", authMiddleware, async (req, res) => {
-    const { textsId } = req.params;
-    const texts = await Texts.findById(textsId).exec();
+//   router.get("/detail/:TextsId", authMiddleware, async (req, res) => {
+//     const { TextsId } = req.params;
+//     // const texts = await Texts.findById(TextsId).exec();
+//     const texts = await Texts.find({ _id: TextsId.toHexString() });
+//     if (!texts) {
+//       res.status(404).send({});
+//     } else {
+//       res.send({ texts });
+
+//       console.log("선택한 게시글 정보를 전송했습니다.");
+//     }
+//   });  
+
+  router.get("/detail/:TextsId", authMiddleware, async (req, res) => {
+    console.log("닭지섭");
+    const TextsId = req.params.TextsId;
+    console.log("우리집 고양이 이름은 : " + TextsId);
+
+    const texts = await Texts.findById(TextsId).exec();
+    // const texts = await Texts.find({ _id: TextsId.toHexString() });
   
     if (!texts) {
       res.status(404).send({});
     } else {
       res.send({ texts });
     }
-  });  
+  });
+
+
 
 // //   게시글 작성하기
 //   router.post("/write", async (req, res) => {

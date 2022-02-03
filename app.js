@@ -75,6 +75,7 @@ router.get("/texts", authMiddleware, async (req, res) => {
     const texts = await Texts.find().exec();
   
     res.send({ texts });
+    console.log('게시글 목록을 보냈습니다.')
   });
 
 // 게시글 하나만 불러오기

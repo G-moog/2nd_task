@@ -208,8 +208,7 @@
 
 <script>
 function textWrite() {
-  alert("고장났나?")
-  console.log("고장인가?")
+  
   let title = $("#inputTitle").val();
   let nickname = $("#inputNickname").val();
   let content = $("#inputContent").val();
@@ -223,25 +222,16 @@ function textWrite() {
       content: content,
     },
     success: function (response) {
-      customAlert("게시글이 작성되었습니다!", function () {
-        window.location.replace("/texts");
-        alert("또 고장났나?")
-        console.log("기매준 풍성풍성")
-      });
+        
+      window.location.replace("/texts.html");
+     
     },
     error: function (error) {
-      customAlert(error.responseJSON.errorMessage);
-      alert("asdfawdf");
+          
     },
   });
 }
-function customAlert(text, confirmCallback) {
-  $("#alertText").text(text);
-  $("#alertModal").modal("show");
-  if (confirmCallback) {
-    $("#alertModal .btn-confirm").click(confirmCallback);
-  }
-}
+
 
 
 

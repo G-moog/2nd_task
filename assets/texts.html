@@ -123,18 +123,17 @@
 
 
     <h1 align = "center">게시글 목록</h1>
-    <hr> <!--> 선 그리는 태그 <-->
-    <table border = "1" style = "width : 100%">
+    <hr> 
+    <table border = "1" style = "width : 100%"  id="textList">
       <thead>
+        
         <tr>
-          <th style="width: 10%">번호</th>
           <th style="width: 60%">제목</th>
           <th style="width: 10%">글쓴이</th>
-          <th style="width: 20%">등록일</th>
         </tr>
       </thead>
-      
-  
+         <tbody align = "center">
+        </tbody>
     </table>
 
     
@@ -170,36 +169,43 @@
       });
 
       
-      $(document).ready(function () {
-        getTexts(null, function (texts) {
-          for (let i = 0; i < texts.length; i++) {
-            make_table(texts[i]);
-          }
-        });
+      // $(document).ready(function () {
+      //   getTexts(null, function (texts) {
+      //     for (let i = 0; i < texts.length; i++) {
+      //       make_table(texts[i]);
+      //     }
+      //   });
 
-      });
-      
-     
+      // }); 
 
-      function number2decimals(num) {
-        return (Math.round(num * 100) / 100).toFixed(2);
-      }
+      $(document).ready(function() {
+        getTexts(function(texts) {
+            for (let i = 0; i < texts.length; i++) {
+                console.log('texts[i] = ' + texts[i])
+                console.log('texts[i] = ' + texts[i])   
+                console.log('texts[i] = ' + texts[i].title)
+
+                make_table(texts[i]);
+            }
+        })
+    })
     </script>
 
     <script>
        function make_table(item) {
         let htmlTemp = 
-        `<tbody align = "center">
-          <td>${texts["order"]}</td>
-          <td align = "left"><a "location.href='/detail.html?textsId=${
-            item["textsId"]}'">${texts["title"]}</a></td>
-          <td>${texts["writer"]}</td>
-          <td>${texts["writtenDate"]}</td>
+        `
+          <tr>
+          <td align = "left"><a "location.href='/detail.html?itemId=${
+            item["itemId"]}'">${item["title"]}</a></td>
+            <td>${item["nickname"]}</td>
+          </tr>
         
               
-      </tbody>`
-      
-        $("#textsList").append(htmlTemp);
+      `
+      $("#textsList>tbody").append("<tr><td>Test Row Append</td></tr>");
+      // $("<tr><td>Test Row Append</td></tr>").appendto("#textsList>tbody");
+        // $("#textsList").append(htmlTemp);
       }
     </script>
   </body>
